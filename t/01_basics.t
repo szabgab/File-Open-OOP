@@ -6,7 +6,7 @@ use Test::More;
 my $filename = 'Makefile.PL';
 my @expected = do { open my $exp, '<', $filename; <$exp>; };
 
-plan tests => 4 + 2*@expected;
+plan tests => 5 + 2*@expected;
 
 use_ok('File::Open::OOP');
 File::Open::OOP->import('oopen');
@@ -27,6 +27,8 @@ while (my $line = $fh->readline) {
 	is $row, $expected[$c], $title;
 }
 
-my @rows = oopen($filename)->readall;
-is_deeply \@rows, \@expected, 'readall';
+my @rows1 = oopen($filename)->readall;
+is_deeply \@rows1, \@expected, 'readall';
 
+my @rows2 = oopen($filename)->slurp;
+is $rows2[0], join('', @expected), 'slurp';
