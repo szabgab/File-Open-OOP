@@ -7,15 +7,21 @@ our $VERSION = '0.01';
 use File::Open qw(fopen);
 
 sub new {
-	my ($class) = @_;
-	my $self = {};
+	my ($class, %args) = @_;
+	my $self = \%args;
 
 	return bless $self, $class;
 }
 
 sub oopen {
-	#fopen
-	return __PACKAGE__->new;
+	my $fh = fopen(@_);
+	return __PACKAGE__->new(fh => $fh);
+}
+
+sub readline {
+	my ($self) = @_;
+	my $fh = $self->{fh};
+	return scalar <$fh>;
 }
 
 
