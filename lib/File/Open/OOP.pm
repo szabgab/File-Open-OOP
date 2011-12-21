@@ -4,7 +4,10 @@ use warnings;
 
 our $VERSION = '0.01';
 
+use base 'Exporter';
 use File::Open qw(fopen);
+
+our @EXPORT_OK = qw(oopen);
 
 sub new {
 	my ($class, %args) = @_;
@@ -15,7 +18,7 @@ sub new {
 
 sub oopen {
 	my $fh = fopen(@_);
-	return __PACKAGE__->new(fh => $fh);
+	return File::Open::OOP->new(fh => $fh);
 }
 
 sub readline {
@@ -24,5 +27,10 @@ sub readline {
 	return scalar <$fh>;
 }
 
+sub readall {
+	my ($self) = @_;
+	my $fh = $self->{fh};
+	return <$fh>;
+}
 
 1;
