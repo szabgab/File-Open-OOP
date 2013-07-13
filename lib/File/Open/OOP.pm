@@ -15,7 +15,7 @@ File::Open::OOP - An Object Oriented way to read and write files
 
 =head1 SYNOPSIS
 
-Reading lines one-by-one 
+Reading lines one-by-one
 
   use File::Open::OOP qw(oopen);
 
