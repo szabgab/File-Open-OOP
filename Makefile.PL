@@ -16,4 +16,10 @@ WriteMakefile (
                      'Test::Exception' => '0.31',
                      'File::Temp'    => 0,
   },
-);
+  LICENSE => 'perl',
+  META_MERGE => {
+          resources => {
+            Repository => 'http://github.com/szabgab/File-Open-OOP',
+          },
+		},
+ );
